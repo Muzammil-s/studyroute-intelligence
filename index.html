@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="StudyRoute Intelligence — Global education discovery & comparison platform featuring tuition, living costs, scholarships, admissions, and country benchmarks." />
+  <title>StudyRoute Intelligence — Global University &amp; Cost Comparator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">SR</div>
+        <div>
+          <strong>StudyRoute Intelligence</strong>
+          <small>Global CS &amp; Tech Education Discovery</small>
+        </div>
+      </div>
+
+      <div class="top-controls">
+        <label class="currency-wrap">Display Currency
+          <select id="currency-select" aria-label="Display currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="CAD">CAD (CA$)</option>
+            <option value="AUD">AUD (A$)</option>
+            <option value="PKR">PKR (Rs.)</option>
+          </select>
+        </label>
+        <button id="btn-open-compare" class="btn btn-primary" type="button">Compare Selected (<span id="compare-count">0</span>/3)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-shell">
+    <!-- Data Transparency Banner -->
+    <section class="notice-banner" role="note">
+      <div>
+        <strong>Data Transparency Notice:</strong> Tuition, living expenses, and FX conversions below are curated <em>illustrative benchmark estimates</em> built for budgeting and side-by-side exploration — not live university fee quotes. Always confirm exact intake tuition, scholarship deadlines, and visa work rules on each linked official university or government portal.
+      </div>
+    </section>
+
+    <!-- Country Insights Strip -->
+    <section class="country-strip" aria-label="Country Destination Benchmarks">
+      <div class="section-head">
+        <h2>Destination Intelligence (6 Countries)</h2>
+        <span class="muted">Click any country card to filter programs</span>
+      </div>
+      <div id="country-cards" class="country-grid"></div>
+    </section>
+
+    <!-- Discovery Toolbar -->
+    <section class="filter-panel">
+      <input id="search-input" type="search" placeholder="Search university, program (Cyber, Informatics, Data), or city..." aria-label="Search programs" />
+      <select id="country-filter" aria-label="Filter by country">
+        <option value="all">All Countries</option>
+        <option value="Germany">Germany</option>
+        <option value="United Kingdom">United Kingdom</option>
+        <option value="Canada">Canada</option>
+        <option value="United States">United States</option>
+        <option value="Australia">Australia</option>
+        <option value="Malaysia">Malaysia</option>
+      </select>
+      <select id="degree-filter" aria-label="Filter by degree">
+        <option value="all">All Degrees</option>
+        <option value="Bachelor's">Bachelor's</option>
+        <option value="Master's">Master's</option>
+      </select>
+      <select id="sort-select" aria-label="Sort programs">
+        <option value="total-asc">Sort: Lowest Total Cost / Yr</option>
+        <option value="tuition-asc">Sort: Lowest Tuition / Yr</option>
+        <option value="living-asc">Sort: Lowest Living Cost / Yr</option>
+      </select>
+    </section>
+
+    <section class="budget-row">
+      <label class="range-wrap">
+        <span>Max Annual Budget: <strong id="budget-label">$75,000</strong> (USD equiv.)</span>
+        <input id="budget-slider" type="range" min="10000" max="80000" step="2500" value="75000" />
+      </label>
+      <label class="toggle-check">
+        <input id="scholarship-toggle" type="checkbox" />
+        <span>Model Typical Merit Scholarship Offset</span>
+      </label>
+      <span id="match-count" class="muted">10 programs shown</span>
+    </section>
+
+    <!-- Programs Grid -->
+    <section id="program-grid" class="program-grid" aria-live="polite"></section>
+  </main>
+
+  <!-- Comparison Modal -->
+  <div id="compare-modal" class="modal" hidden>
+    <div class="modal-card modal-wide">
+      <div class="modal-head">
+        <div>
+          <h2>Side-by-Side Program &amp; Cost Comparison</h2>
+          <p class="muted">Illustrative annual &amp; full-degree comparison in <strong id="cmp-currency-label">USD</strong></p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button id="btn-export-compare" class="btn btn-secondary" type="button">Export JSON Brief</button>
+          <button id="close-compare" class="icon-btn" type="button" aria-label="Close comparison">&times;</button>
+        </div>
+      </div>
+      <div id="compare-chart" class="chart-panel"></div>
+      <div id="compare-table-host" class="table-wrap"></div>
+    </div>
+  </div>
+
+  <!-- Country Visa / Portal Modal -->
+  <div id="country-modal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="country-modal-title">Country Guide</h2>
+        <button id="close-country-modal" class="icon-btn" type="button">&times;</button>
+      </div>
+      <div id="country-modal-body" class="country-modal-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
