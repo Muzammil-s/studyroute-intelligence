@@ -4,6 +4,11 @@
 
 ---
 
+## Live Demo
+
+- **Production URL:** [https://studyroute-intelligence.vercel.app/](https://studyroute-intelligence.vercel.app/)
+- **Mode:** Live interactive university and destination comparator deployed on Vercel.
+
 ## Application Preview
 
 ![StudyRoute Intelligence Platform](docs/screenshot.png)
